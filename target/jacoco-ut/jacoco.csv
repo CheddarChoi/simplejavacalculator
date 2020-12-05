@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+simplejavacalculator,simplejavacalculator,Calculator.BiOperatorModes,9,69,0,0,0,2,2,2,2,2
+simplejavacalculator,simplejavacalculator,SimpleJavaCalculator,16,0,0,0,7,0,2,0,2,0
+simplejavacalculator,simplejavacalculator,UI,1040,0,46,0,190,0,29,0,6,0
+simplejavacalculator,simplejavacalculator,Calculator,43,209,11,31,7,47,8,19,0,6
+simplejavacalculator,simplejavacalculator,Calculator.MonoOperatorModes,9,99,0,0,0,2,2,2,2,2

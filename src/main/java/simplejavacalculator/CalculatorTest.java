@@ -1,5 +1,7 @@
 package simplejavacalculator;
 
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class CalculatorTest extends simplejavacalculator.Calculator {

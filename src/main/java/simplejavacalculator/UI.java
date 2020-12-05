@@ -21,39 +21,103 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 
 
-import java.io.*;
+import java.io.IOException;
 
 public class UI implements ActionListener {
-   
+
+   /**
+    * Main frame for the calculator.
+    */
    private final JFrame frame;
-   
+
+   /**
+    * Parent panel.
+    */
    private final JPanel panel;
+
+   /**
+    * Panel for displaying the number.
+    */
    private final JPanel panelSub1;
+
+   /**
+    * Panel for buttons 1, 2, 3, +, -.
+    */
    private final JPanel panelSub2;
+
+   /**
+    * Panel for buttons 4, 5, 6, *, /.
+    */
    private final JPanel panelSub3;
+
+   /**
+    * Panel for buttons 7, 8, 9, equals, clear.
+    */
    private final JPanel panelSub4;
+
+   /**
+    * Panel for button 0.
+    */
    private final JPanel panelSub5;
+
+   /**
+    * Panel for buttons square, square root, inverse, and x power to y.
+    */
    private final JPanel panelSub6;
+
+   /**
+    * Panel for buttons cos, sin, tan.
+    */
    private final JPanel panelSub7;
+
+   /**
+    * Panel for buttons log, modulo, absolute value, binary.
+    */
    private final JPanel panelSub8;
-   
+
+   /**
+    * Text area for displaying the number.
+    */
    private final JTextArea text;
-   private final JButton but[], butAdd, butMinus, butMultiply, butDivide,
+
+   /**
+    * Number buttons for the calculator.
+    */
+   private final JButton[] but;
+   /**
+    * Other buttons for the calculator.
+    */
+   private final JButton butAdd, butMinus, butMultiply, butDivide,
       butEqual, butCancel, butSquareRoot, butSquare, butOneDevidedBy,
       butCos, butSin, butTan, butxpowerofy, butlog, butrate, butabs, butBinary;
+
+   /**
+    * Calculator.
+    */
    private final Calculator calc;
-   
+
+   /**
+    * Number button values.
+    */
    private final String[] buttonValue = {"0", "1", "2", "3", "4", "5", "6",
       "7", "8", "9"};
-   
+
+   /**
+    * Font for the buttons.
+    */
    private final Font font;
+   /**
+    * Font for the number display.
+    */
    private final Font textFont;
 
-   
+   /**
+    * Assemble the calculator frame.
+    * @throws IOException
+    */
    public UI() throws IOException {
       frame = new JFrame("Calculator PH");
 
-      
       panel = new JPanel();
       panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
       panelSub1 = new JPanel(new FlowLayout());
@@ -64,35 +128,39 @@ public class UI implements ActionListener {
       panelSub6 = new JPanel(new FlowLayout());
       panelSub7 = new JPanel(new FlowLayout());
       panelSub8 = new JPanel(new FlowLayout());
-      
-      font = new Font("Consolas",Font.PLAIN, 18);
-      
-      text = new JTextArea(1, 30);
-      
-      textFont = new Font("Consolas",Font.BOLD, 24);
-      
-      but = new JButton[10];      
-      for (int i = 0; i < 10; i++) {
+
+      final int fontSize = 18;
+      font = new Font("Consolas", Font.PLAIN, fontSize);
+
+      final int textSize = 30;
+      text = new JTextArea(1, textSize);
+
+      final int textFontSize = 24;
+      textFont = new Font("Consolas", Font.BOLD, textFontSize);
+
+      final int digits = 10;
+      but = new JButton[digits];
+      for (int i = 0; i < digits; i++) {
          but[i] = new JButton(String.valueOf(i));
-      }      
-      butAdd = new JButton("+");      
-      butMinus = new JButton("-");      
-      butMultiply = new JButton("*");      
-      butDivide = new JButton("/");      
-      butEqual = new JButton("=");      
-      butSquareRoot = new JButton("sqrt");      
-      butSquare = new JButton("x*x");      
-      butOneDevidedBy = new JButton("1/x");      
-      butCos = new JButton("Cos");      
-      butSin = new JButton("Sin");      
-      butTan = new JButton("Tan");      
-      butxpowerofy = new JButton("x^y");      
-      butlog = new JButton("log10(x)");      
-      butrate = new JButton("x%");      
-      butabs = new JButton("abs(x)");      
-      butCancel = new JButton("C");      
-      butBinary = new JButton("Bin");      
-      
+      }
+      butAdd = new JButton("+");
+      butMinus = new JButton("-");
+      butMultiply = new JButton("*");
+      butDivide = new JButton("/");
+      butEqual = new JButton("=");
+      butSquareRoot = new JButton("sqrt");
+      butSquare = new JButton("x*x");
+      butOneDevidedBy = new JButton("1/x");
+      butCos = new JButton("Cos");
+      butSin = new JButton("Sin");
+      butTan = new JButton("Tan");
+      butxpowerofy = new JButton("x^y");
+      butlog = new JButton("log10(x)");
+      butrate = new JButton("x%");
+      butabs = new JButton("abs(x)");
+      butCancel = new JButton("C");
+      butBinary = new JButton("Bin");
+
       calc = new Calculator();
       
    }

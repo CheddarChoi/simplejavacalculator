@@ -92,7 +92,7 @@ public class UI implements ActionListener {
    private final JButton butMultiply;
    private final JButton butDivide;
    private final JButton butEqual;
-   private final JButton butCancel;]
+   private final JButton butCancel;
    private final JButton butSquareRoot;		
    private final JButton butSquare;		
    private final JButton butOneDevidedBy;		

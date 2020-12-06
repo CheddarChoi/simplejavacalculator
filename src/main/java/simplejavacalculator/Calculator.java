@@ -15,11 +15,12 @@ import static java.lang.Math.pow;
 public class Calculator {
 
     public class NotReachException extends RuntimeException {
+        /**
+         * Exception handling fot the case when no operator matches.
+         * @param msg message to print
+         */
         public NotReachException(final String msg) {
             super(msg);
-        }
-        public NotReachException(final Exception ex) {
-            super(ex);
         }
     }
 

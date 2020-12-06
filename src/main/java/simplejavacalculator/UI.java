@@ -85,24 +85,72 @@ public class UI implements ActionListener {
     */
    private final JButton[] but;
    /**
-    * Other buttons for the calculator.
+    * Add button for the calculator.
     */
    private final JButton butAdd;
+   /**
+    * Minus button for the calculator.
+    */
    private final JButton butMinus;
+   /**
+    * Multiply button for the calculator.
+    */
    private final JButton butMultiply;
+   /**
+    * Divide button for the calculator.
+    */
    private final JButton butDivide;
+   /**
+    * Equal button for the calculator.
+    */
    private final JButton butEqual;
+   /**
+    * Cancel button for the calculator.
+    */
    private final JButton butCancel;
+   /**
+    * Square Root button for the calculator.
+    */
    private final JButton butSquareRoot;
+   /**
+    * Square button for the calculator.
+    */
    private final JButton butSquare;
+   /**
+    * One divided by button for the calculator.
+    */
    private final JButton butOneDevidedBy;
+   /**
+    * Cosine button for the calculator.
+    */
    private final JButton butCos;
+   /**
+    * Sine button for the calculator.
+    */
    private final JButton butSin;
+   /**
+    * Tangent button for the calculator.
+    */
    private final JButton butTan;
+   /**
+    * X power of Y button for the calculator.
+    */
    private final JButton butxpowerofy;
+   /**
+    * Log button for the calculator.
+    */
    private final JButton butlog;
+   /**
+    * Rate button for the calculator.
+    */
    private final JButton butrate;
+   /**
+    * Tab button for the calculator.
+    */
    private final JButton butabs;
+   /**
+    * Binary button for the calculator.
+    */
    private final JButton butBinary;
 
    /**
@@ -178,6 +226,9 @@ public class UI implements ActionListener {
       calc = new Calculator();
    }
 
+   /**
+    * Initiate calculator.
+    */
    public void init() {
       frame.setSize(450, 450);
       frame.setVisible(true);

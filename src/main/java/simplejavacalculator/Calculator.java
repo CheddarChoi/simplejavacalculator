@@ -24,16 +24,30 @@ public class Calculator {
     }
 
     public enum BiOperatorModes {
+        /**
+         * Possible operator modes for two numbers.
+         */
         normal, add, minus, multiply, divide, xpowerofy
     }
 
     public enum MonoOperatorModes {
+        /**
+         * Possible operator modes for a single number.
+         */
         square, squareRoot, oneDevidedBy, cos, sin, tan, log, rate, abs
     }
 
+    /**
+     * Variable where the first number is stored.
+     */
     private Double num1;
+    /**
+     * Variable where the second number is stored.
+     */
     private Double num2;
-
+    /**
+     * The first operator is the normal mode.
+     */
     private BiOperatorModes mode = BiOperatorModes.normal;
 
     private Double calculateBiImpl() {
@@ -64,7 +78,13 @@ public class Calculator {
         throw new NotReachException("never reach");
     }
 
-    public Double calculateBi(BiOperatorModes newMode, Double num) {
+    /**
+     * Performs an operation on a new number with the last calculated number.
+     * @param newMode operator used in operation
+     * @param num number used in operation
+     * @return calculated operation
+     */
+    public Double calculateBi(final BiOperatorModes newMode, final Double num) {
         if (mode == BiOperatorModes.normal) {
             num2 = 0.0;
             num1 = num;
@@ -78,10 +98,18 @@ public class Calculator {
         }
     }
 
-    public Double calculateEqual(Double num) {
+    /**
+     * @param num final number obtained after calculation
+     * @return final number
+     */
+    public Double calculateEqual(final Double num) {
         return calculateBi(BiOperatorModes.normal, num);
     }
 
+    /**
+     * Resets the calculator values.
+     * @return NaN
+     */
     public Double reset() {
         num2 = 0.0;
         num1 = 0.0;
@@ -90,7 +118,16 @@ public class Calculator {
         return NaN;
     }
 
-    public Double calculateMono(MonoOperatorModes newMode, Double num) {
+    /**
+     * Performs an operation on a single number.
+     * @param newMode operator used in operation
+     * @param num number used in operation
+     * @return calculated operation
+     */
+    public Double calculateMono(final MonoOperatorModes newMode,
+                                final Double num) {
+        final int pi = 180;
+        final int percent = 100;
         if (newMode == MonoOperatorModes.square) {
             return num * num;
         }
@@ -107,10 +144,10 @@ public class Calculator {
             return Math.sin(num);
         }
         if (newMode == MonoOperatorModes.tan) {
-            if (num == 0 || num % 180 == 0) {
+            if (num == 0 || num % pi == 0) {
                 return 0.0;
             }
-            if (num % 90 == 0 && num % 180 != 0) {
+            if (num % (pi / 2) == 0 && num % pi != 0) {
                 return NaN;
             }
 
@@ -120,9 +157,9 @@ public class Calculator {
             return log10(num);
         }
         if (newMode == MonoOperatorModes.rate) {
-           return num / 100;
+           return num / percent;
         }
-        if (newMode == MonoOperatorModes.abs){
+        if (newMode == MonoOperatorModes.abs) {
             return Math.abs(num);
         }
 

@@ -11,6 +11,7 @@ package simplejavacalculator;
 import static java.lang.Double.NaN;
 import static java.lang.Math.log10;
 import static java.lang.Math.pow;
+import static java.lang.Throwable.Exception;
 
 public class Calculator {
 
@@ -52,7 +53,7 @@ public class Calculator {
         }
 
         // never reach
-        throw new Error();
+        throw new SystemException("never reach");
     }
 
     public Double calculateBi(BiOperatorModes newMode, Double num) {
@@ -118,7 +119,7 @@ public class Calculator {
         }
 
         // never reach
-        throw new Error();
+        throw new SystemException("never reach");
     }
 
 }

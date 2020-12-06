@@ -86,11 +86,73 @@ public class UI implements ActionListener {
    private final JButton[] but;
 
    /**
-    * Other buttons for the calculator.
+    * Add button for the calculator.
     */
-   private final JButton butAdd, butMinus, butMultiply, butDivide,
-      butEqual, butCancel, butSquareRoot, butSquare, butOneDevidedBy,
-      butCos, butSin, butTan, butxpowerofy, butlog, butrate, butabs, butBinary;
+   private final JButton butAdd;
+   /**
+    * Minus button for the calculator.
+    */
+   private final JButton butMinus;
+   /**
+    * Multiply button for the calculator.
+    */
+   private final JButton butMultiply;
+   /**
+    * Divide button for the calculator.
+    */
+   private final JButton butDivide;
+   /**
+    * Equal button for the calculator.
+    */
+   private final JButton butEqual;
+   /**
+    * Cancel button for the calculator.
+    */
+   private final JButton butCancel;
+   /**
+    * Square Root button for the calculator.
+    */
+   private final JButton butSquareRoot;
+   /**
+    * Square button for the calculator.
+    */
+   private final JButton butSquare;
+   /**
+    * One divided by button for the calculator.
+    */
+   private final JButton butOneDevidedBy;
+   /**
+    * Cosine button for the calculator.
+    */
+   private final JButton butCos;
+   /**
+    * Sine button for the calculator.
+    */
+   private final JButton butSin;
+   /**
+    * Tangent button for the calculator.
+    */
+   private final JButton butTan;
+   /**
+    * X power of Y button for the calculator.
+    */
+   private final JButton butxpowerofy;
+   /**
+    * Log button for the calculator.
+    */
+   private final JButton butlog;
+   /**
+    * Rate button for the calculator.
+    */
+   private final JButton butrate;
+   /**
+    * Tab button for the calculator.
+    */
+   private final JButton butabs;
+   /**
+    * Binary button for the calculator.
+    */
+   private final JButton butBinary;
 
    /**
     * Calculator.
@@ -100,8 +162,8 @@ public class UI implements ActionListener {
    /**
     * Number button values.
     */
-   private final String[] buttonValue = {"0", "1", "2", "3", "4", "5", "6",
-      "7", "8", "9"};
+   private static final String[] BUTTONVALUE
+           = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
    /**
     * Font for the buttons.
@@ -302,7 +364,7 @@ public class UI implements ActionListener {
       final int buttonNum = 10;
       for (int i = 0; i < buttonNum; i++) {
          if (source == but[i]) {
-            text.replaceSelection(buttonValue[i]);
+            text.replaceSelection(BUTTONVALUE[i]);
             return;
          }
       }
@@ -319,7 +381,6 @@ public class UI implements ActionListener {
          writer(calc.calculateBi(Calculator.BiOperatorModes.multiply,
                                  reader()));
       }
-
       if (source == butDivide) {
          writer(calc.calculateBi(
                  Calculator.BiOperatorModes.divide, reader()));
@@ -333,7 +394,6 @@ public class UI implements ActionListener {
          writer(calc.calculateMono(Calculator.MonoOperatorModes.square,
                                    reader()));
       }
-
       if (source == butSquareRoot) {
          writer(calc.calculateMono(
                  Calculator.MonoOperatorModes.squareRoot, reader()));
@@ -346,14 +406,12 @@ public class UI implements ActionListener {
 
       if (source == butCos) {
          writer(calc.calculateMono(Calculator.MonoOperatorModes.cos,
-                                   reader()));
+                 reader()));
       }
-
       if (source == butSin) {
          writer(calc.calculateMono(Calculator.MonoOperatorModes.sin,
-                                   reader()));
+                 reader()));
       }
-
       if (source == butTan) {
          writer(calc.calculateMono(Calculator.MonoOperatorModes.tan,
                                    reader()));
@@ -407,7 +465,7 @@ public class UI implements ActionListener {
    }
 
    /**
-    * Writesa new number to the calculator string.
+    * Writes a new number to the calculator string.
     * @param num Number to be displayed.
     */
    public void writer(final Double num) {

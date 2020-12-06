@@ -22,7 +22,9 @@ public class Calculator {
         square, squareRoot, oneDevidedBy, cos, sin, tan ,log , rate, abs
     }
 
-    private Double num1, num2;
+    private Double num1;
+    private Double num2;
+
     private BiOperatorModes mode = BiOperatorModes.normal;
 
     private Double calculateBiImpl() {

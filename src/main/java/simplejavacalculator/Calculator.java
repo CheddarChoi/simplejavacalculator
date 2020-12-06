@@ -128,6 +128,7 @@ public class Calculator {
     public Double calculateMono(final MonoOperatorModes newMode,
                                 final Double num) {
         final int pi = 180;
+        final int halfPi = 90;
         final int percent = 100;
         if (newMode == MonoOperatorModes.square) {
             return num * num;
@@ -148,7 +149,7 @@ public class Calculator {
             if (num == 0 || num % pi == 0) {
                 return 0.0;
             }
-            if (num % (pi / 2) == 0 && num % pi != 0) {
+            if (num % halfPi == 0 && num % pi != 0) {
                 return NaN;
             }
 

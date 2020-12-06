@@ -3,7 +3,9 @@ import simplejavacalculator.UI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 
@@ -96,7 +98,7 @@ public class UITest {
 
     @Test
     public void op_but_test() throws IOException, NoSuchFieldException, IllegalAccessException {
-        final UI ui = new UI();
+        UI ui = new UI();
         ui.init();
 
         Field addButField = ui.getClass().getDeclaredField("butAdd");
@@ -107,15 +109,20 @@ public class UITest {
         multiplyButField.setAccessible(true);
         Field divideButField = ui.getClass().getDeclaredField("butDivide");
         divideButField.setAccessible(true);
+        Field powerButField = ui.getClass().getDeclaredField("butxpowerofy");
+        powerButField.setAccessible(true);
         Field equalButField = ui.getClass().getDeclaredField("butEqual");
         equalButField.setAccessible(true);
         Field textField = ui.getClass().getDeclaredField("text");
         textField.setAccessible(true);
         JTextArea text = ((JTextArea) textField.get(ui));
 
-        text.setText("100");
-        ui.actionPerformed(new ActionEvent(addButField.get(ui), 0, null));
+        text.setText("10");
+        ui.actionPerformed(new ActionEvent(powerButField.get(ui), 0, null));
         assertEquals("", text.getText());
+        text.setText("2");
+        ui.actionPerformed(new ActionEvent(addButField.get(ui), 0, null));
+        assertEquals("100.0", text.getText());
         text.setText("10");
         ui.actionPerformed(new ActionEvent(subButField.get(ui), 0, null));
         assertEquals("110.0", text.getText());
@@ -132,7 +139,7 @@ public class UITest {
 
     @Test
     public void cancel_but_test() throws IOException, NoSuchFieldException, IllegalAccessException {
-        final UI ui = new UI();
+        UI ui = new UI();
         ui.init();
 
         Field addButField = ui.getClass().getDeclaredField("butAdd");
@@ -159,5 +166,80 @@ public class UITest {
         ui.actionPerformed(new ActionEvent(addButField.get(ui), 0, null));
         ui.actionPerformed(new ActionEvent(cancelButField.get(ui), 0, null));
         assertEquals("", text.getText());
+    }
+
+    @Test
+    public void testBtnMonoOp() throws IOException, NoSuchFieldException, IllegalAccessException {
+        UI ui = new UI();
+        ui.init();
+
+        Field squareRootButField = ui.getClass().getDeclaredField("butSquareRoot");
+        squareRootButField.setAccessible(true);
+        Field squareButField = ui.getClass().getDeclaredField("butSquare");
+        squareButField.setAccessible(true);
+        Field oneDevidedByButField = ui.getClass().getDeclaredField("butOneDevidedBy");
+        oneDevidedByButField.setAccessible(true);
+        Field cosButField = ui.getClass().getDeclaredField("butCos");
+        cosButField.setAccessible(true);
+        Field sinButField = ui.getClass().getDeclaredField("butSin");
+        sinButField.setAccessible(true);
+        Field tanButField = ui.getClass().getDeclaredField("butTan");
+        tanButField.setAccessible(true);
+        Field logButField = ui.getClass().getDeclaredField("butlog");
+        logButField.setAccessible(true);
+        Field rateButField = ui.getClass().getDeclaredField("butrate");
+        rateButField.setAccessible(true);
+        Field absButField = ui.getClass().getDeclaredField("butabs");
+        absButField.setAccessible(true);
+        Field binaryButField = ui.getClass().getDeclaredField("butBinary");
+        binaryButField.setAccessible(true);
+        Field textField = ui.getClass().getDeclaredField("text");
+        textField.setAccessible(true);
+        JTextArea text = ((JTextArea) textField.get(ui));
+
+        text.setText("36");
+        ui.actionPerformed(new ActionEvent(squareRootButField.get(ui), 0, null));
+        assertEquals("6.0", text.getText());
+        text.setText("7");
+        ui.actionPerformed(new ActionEvent(squareButField.get(ui), 0, null));
+        assertEquals("49.0", text.getText());
+        text.setText("-8");
+        ui.actionPerformed(new ActionEvent(squareButField.get(ui), 0, null));
+        assertEquals("64.0", text.getText());
+        text.setText("0.1");
+        ui.actionPerformed(new ActionEvent(oneDevidedByButField.get(ui), 0, null));
+        assertEquals("10.0", text.getText());
+        text.setText("Infinity");
+        ui.actionPerformed(new ActionEvent(oneDevidedByButField.get(ui), 0, null));
+        assertEquals("0.0", text.getText());
+        ui.actionPerformed(new ActionEvent(oneDevidedByButField.get(ui), 0, null));
+        assertEquals("Infinity", text.getText());
+        text.setText(Double.toString(0));
+        ui.actionPerformed(new ActionEvent(cosButField.get(ui), 0, null));
+        assertEquals("1.0", text.getText());
+        text.setText(Double.toString(0));
+        ui.actionPerformed(new ActionEvent(sinButField.get(ui), 0, null));
+        assertEquals("0.0", text.getText());
+        text.setText(Double.toString(0));
+        ui.actionPerformed(new ActionEvent(tanButField.get(ui), 0, null));
+        assertEquals("0.0", text.getText());
+        text.setText(Double.toString(10));
+        ui.actionPerformed(new ActionEvent(logButField.get(ui), 0, null));
+        assertEquals("1.0", text.getText());
+        text.setText(Double.toString(-11));
+        ui.actionPerformed(new ActionEvent(absButField.get(ui), 0, null));
+        assertEquals("11.0", text.getText());
+        text.setText(Double.toString(99));
+        ui.actionPerformed(new ActionEvent(rateButField.get(ui), 0, null));
+        assertEquals("0.99", text.getText());
+        text.setText("2");
+        ui.actionPerformed(new ActionEvent(binaryButField.get(ui), 0, null));
+        assertEquals("10", text.getText());
+
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setErr(new PrintStream(errContent));
+        text.setText(Double.toString(2));
+        ui.actionPerformed(new ActionEvent(binaryButField.get(ui), 0, null));
+        assertEquals("Error while parse to binary.java.lang.NumberFormatException: For input string: \"2.0\""+System.getProperty("line.separator"), errContent.toString());
     }
 }

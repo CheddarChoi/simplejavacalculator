@@ -14,12 +14,21 @@ import static java.lang.Math.pow;
 
 public class Calculator {
 
+    public class NotReachException extends RuntimeException {
+        public NotReachException(final String msg) {
+            super(msg);
+        }
+        public NotReachException(final Exception ex) {
+            super(ex);
+        }
+    }
+
     public enum BiOperatorModes {
-        normal, add, minus, multiply, divide , xpowerofy 
+        normal, add, minus, multiply, divide, xpowerofy
     }
 
     public enum MonoOperatorModes {
-        square, squareRoot, oneDevidedBy, cos, sin, tan ,log , rate, abs
+        square, squareRoot, oneDevidedBy, cos, sin, tan, log, rate, abs
     }
 
     private Double num1;
@@ -48,11 +57,11 @@ public class Calculator {
             return num1 / num2;
         }
         if (mode == BiOperatorModes.xpowerofy) {
-            return pow(num1,num2);
+            return pow(num1, num2);
         }
 
         // never reach
-        throw new Error("never reach");
+        throw new NotReachException("never reach");
     }
 
     public Double calculateBi(BiOperatorModes newMode, Double num) {
@@ -118,7 +127,7 @@ public class Calculator {
         }
 
         // never reach
-        throw new Error("never reach");
+        throw new NotReachException("never reach");
     }
 
 }

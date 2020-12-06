@@ -84,6 +84,7 @@ public class UI implements ActionListener {
     * Number buttons for the calculator.
     */
    private final JButton[] but;
+
    /**
     * Other buttons for the calculator.
     */
@@ -162,23 +163,27 @@ public class UI implements ActionListener {
       butBinary = new JButton("Bin");
 
       calc = new Calculator();
-      
-   }
-   
-   public void init() {      
-      frame.setSize(450, 450);
-      frame.setVisible(true);
-      frame.setLocationRelativeTo(null); 
-      frame.setResizable(false);
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 
-      
+   }
+
+   /**
+    * Create and fill the frame for the calculator.
+    */
+   public void init() {
+      final int size = 450;
+      frame.setSize(size, size);
+      frame.setVisible(true);
+      frame.setLocationRelativeTo(null);
+      frame.setResizable(false);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
       text.setFont(textFont);
       text.setEditable(false);
-      
-      for (int i = 0; i < 10; i++) {
+
+      final int buttonNumber = 10;
+      for (int i = 0; i < buttonNumber; i++) {
          but[i].setFont(font);
-      }      
+      }
       butAdd.setFont(font);
       butMinus.setFont(font);
       butMultiply.setFont(font);
@@ -195,60 +200,75 @@ public class UI implements ActionListener {
       butrate.setFont(font);
       butabs.setFont(font);
       butCancel.setFont(font);
-      butBinary.setFont(font); 
-      
-      panel.add(Box.createHorizontalStrut(100));
+      butBinary.setFont(font);
+
+      final int horStruct = 100;
+      panel.add(Box.createHorizontalStrut(horStruct));
       panelSub1.add(text);
       panel.add(panelSub1);
-      
-      panelSub2.add(but[1]);
-      panelSub2.add(but[2]);
-      panelSub2.add(but[3]);
-      panelSub2.add(Box.createHorizontalStrut(15));
+
+      final int one = 1;
+      final int two = 2;
+      final int three = 3;
+      final int four = 4;
+      final int five = 5;
+      final int six = 6;
+      final int seven = 7;
+      final int eight = 8;
+      final int nine = 9;
+      final int zero = 0;
+
+      final int horSpace = 15;
+      panelSub2.add(but[one]);
+      panelSub2.add(but[two]);
+      panelSub2.add(but[three]);
+      panelSub2.add(Box.createHorizontalStrut(horSpace));
       panelSub2.add(butAdd);
       panelSub2.add(butMinus);
       panel.add(panelSub2);
-      
-      panelSub3.add(but[4]);
-      panelSub3.add(but[5]);
-      panelSub3.add(but[6]);
-      panelSub3.add(Box.createHorizontalStrut(15));
+
+      panelSub3.add(but[four]);
+      panelSub3.add(but[five]);
+      panelSub3.add(but[six]);
+      panelSub3.add(Box.createHorizontalStrut(horSpace));
       panelSub3.add(butMultiply);
-      panelSub3.add(butDivide);      
+      panelSub3.add(butDivide);
       panel.add(panelSub3);
-      
-      panelSub4.add(but[7]);
-      panelSub4.add(but[8]);
-      panelSub4.add(but[9]);
-      panelSub4.add(Box.createHorizontalStrut(15));
+
+      panelSub4.add(but[seven]);
+      panelSub4.add(but[eight]);
+      panelSub4.add(but[nine]);
+      panelSub4.add(Box.createHorizontalStrut(horSpace));
       panelSub4.add(butEqual);
       panelSub4.add(butCancel);
       panel.add(panelSub4);
-      
-      panelSub5.add(but[0]);
-      panelSub5.add(Box.createHorizontalStrut(210));
+
+      final int horSpace2 = 210;
+      panelSub5.add(but[zero]);
+      panelSub5.add(Box.createHorizontalStrut(horSpace2));
       panel.add(panelSub5);
-      
+
       panelSub6.add(butSquare);
       panelSub6.add(butSquareRoot);
       panelSub6.add(butOneDevidedBy);
       panelSub6.add(butxpowerofy);
       panel.add(panelSub6);
-      
+
       panelSub7.add(butCos);
       panelSub7.add(butSin);
       panelSub7.add(butTan);
       panel.add(panelSub7);
-      
+
       panelSub8.add(butlog);
       panelSub8.add(butrate);
       panelSub8.add(butabs);
       panelSub8.add(butBinary);
       panel.add(panelSub8);
-      
-      for (int i = 0; i < 10; i++) {
+
+      for (int i = 0; i < buttonNumber; i++) {
          but[i].addActionListener(this);
-      }      
+      }
+
       butAdd.addActionListener(this);
       butMinus.addActionListener(this);
       butMultiply.addActionListener(this);
@@ -264,71 +284,76 @@ public class UI implements ActionListener {
       butrate.addActionListener(this);
       butabs.addActionListener(this);
       butBinary.addActionListener(this);
-      
+
       butEqual.addActionListener(this);
       butCancel.addActionListener(this);
-      
+
       frame.add(panel);
    }
-   
+
+   /**
+    * Handles the action performed bu the user.
+    * @param e Information about the action performed by the user.
+    */
    @Override
-   public void actionPerformed(ActionEvent e) {
+   public void actionPerformed(final ActionEvent e) {
       final Object source = e.getSource();
-      
-      for (int i = 0; i < 10; i++) {
+
+      final int buttonNum = 10;
+      for (int i = 0; i < buttonNum; i++) {
          if (source == but[i]) {
             text.replaceSelection(buttonValue[i]);
             return;
          }
       }
-      
+
       if (source == butAdd) {
          writer(calc.calculateBi(Calculator.BiOperatorModes.add, reader()));
       }
-      
+
       if (source == butMinus) {
          writer(calc.calculateBi(Calculator.BiOperatorModes.minus, reader()));
       }
-      
+
       if (source == butMultiply) {
          writer(calc.calculateBi(Calculator.BiOperatorModes.multiply,
                                  reader()));
       }
-      
+
       if (source == butDivide) {
-         writer(calc
-                   .calculateBi(Calculator.BiOperatorModes.divide, reader()));
+         writer(calc.calculateBi(
+                 Calculator.BiOperatorModes.divide, reader()));
       }
       if (source == butxpowerofy) {
-         writer(calc
-                   .calculateBi(Calculator.BiOperatorModes.xpowerofy, reader()));
+         writer(calc.calculateBi(
+                 Calculator.BiOperatorModes.xpowerofy, reader()));
       }
-      
+
       if (source == butSquare) {
          writer(calc.calculateMono(Calculator.MonoOperatorModes.square,
                                    reader()));
       }
-      
+
       if (source == butSquareRoot) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.squareRoot,
-                                   reader()));
+         writer(calc.calculateMono(
+                 Calculator.MonoOperatorModes.squareRoot, reader()));
       }
-      
+
       if (source == butOneDevidedBy) {
          writer(calc.calculateMono(
-                                   Calculator.MonoOperatorModes.oneDevidedBy, reader()));
+                 Calculator.MonoOperatorModes.oneDevidedBy, reader()));
       }
-      
+
       if (source == butCos) {
          writer(calc.calculateMono(Calculator.MonoOperatorModes.cos,
                                    reader()));
       }
-      
+
       if (source == butSin) {
          writer(calc.calculateMono(Calculator.MonoOperatorModes.sin,
                                    reader()));
       }
-      
+
       if (source == butTan) {
          writer(calc.calculateMono(Calculator.MonoOperatorModes.tan,
                                    reader()));
@@ -341,25 +366,25 @@ public class UI implements ActionListener {
          writer(calc.calculateMono(Calculator.MonoOperatorModes.rate,
                                    reader()));
       }
-      if(source == butabs){
+      if (source == butabs) {
          writer(calc.calculateMono(Calculator.MonoOperatorModes.abs, reader()));
       }
-      
+
       if (source == butEqual) {
          writer(calc.calculateEqual(reader()));
       }
-      
+
       if (source == butCancel) {
          writer(calc.reset());
       }
-      
+
       if (source == butBinary) {
          parsetoBinary();
       }
-      
+
       text.selectAll();
    }
-   
+
    private void parsetoBinary() {
       try {
          text.setText("" + Long.toBinaryString(Long.parseLong(text.getText())));
@@ -367,16 +392,24 @@ public class UI implements ActionListener {
          System.err.println("Error while parse to binary." + ex.toString());
       }
    }
-   
+
+   /**
+    * Converts the text on the calculator screen to a double.
+    * @return the number displayed on the calculator.
+    */
    public Double reader() {
       Double num;
       String str;
       str = text.getText();
       num = Double.valueOf(str);
-      
+
       return num;
    }
-   
+
+   /**
+    * Writesa new number to the calculator string.
+    * @param num Number to be displayed.
+    */
    public void writer(final Double num) {
       if (Double.isNaN(num)) {
          text.setText("");

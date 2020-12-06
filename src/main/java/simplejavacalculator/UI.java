@@ -87,9 +87,23 @@ public class UI implements ActionListener {
    /**
     * Other buttons for the calculator.
     */
-   private final JButton butAdd, butMinus, butMultiply, butDivide,
-      butEqual, butCancel, butSquareRoot, butSquare, butOneDevidedBy,
-      butCos, butSin, butTan, butxpowerofy, butlog, butrate, butabs, butBinary;
+   private final JButton butAdd;
+   private final JButton butMinus;
+   private final JButton butMultiply;
+   private final JButton butDivide;
+   private final JButton butEqual;
+   private final JButton butCancel;]
+   private final JButton butSquareRoot;		
+   private final JButton butSquare;		
+   private final JButton butOneDevidedBy;		
+   private final JButton butCos;		
+   private final JButton butSin;		
+   private final JButton butTan;		
+   private final JButton butxpowerofy;		
+   private final JButton butlog;		
+   private final JButton butrate;		
+   private final JButton butabs;		
+   private final JButton butBinary;
 
    /**
     * Calculator.
@@ -99,7 +113,7 @@ public class UI implements ActionListener {
    /**
     * Number button values.
     */
-   private final String[] buttonValue = {"0", "1", "2", "3", "4", "5", "6",
+   private static final String[] buttonValue = {"0", "1", "2", "3", "4", "5", "6",
       "7", "8", "9"};
 
    /**
